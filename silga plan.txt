@@ -1,0 +1,21 @@
+GA flow
+
+initialise done
+
+whiel populationfitness is not 0:
+	go through fitness function done
+	found soln? done
+		yes exit done
+		no  go next done 
+	selection done
+	make new gen
+		crossover
+		mutate
+
+f(x) = (a+30b^2c-2d^3e^2+2f) - 2567 
+genome represent [a,b,c,d,e,f]
+
+crossover first 3 last 3 
+
+mutation increase/decrease number in specific index by amount, changeable
+
