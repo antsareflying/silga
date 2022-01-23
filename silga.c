@@ -3,9 +3,10 @@
 #include <time.h>
 #include <math.h>
 #include <stdbool.h>
+#include "sodium.h"
 
 double double_rand_range(double a, double b);
-double int_rand_range(double a, double b);
+int int_rand_range(int a, int b);
 int cmpfunc (const void * a, const void * b);
 bool check_fitness_zero(double populationfitness[30]);
 
@@ -18,17 +19,25 @@ double new_population[30][6] = {0};
 
 int main(void)
 {
+
+	if(sodium_init() == -1)
+	{
+		return 1;
+	}
+
 	int generation = 0;
 	double population[30][6] = {0};
 	double populationfitness[30] = {1};
 	int parent_1[30] = {31};
 	int parent_2[30] = {31};
 
+	srand(time(NULL));
+
 	for(int i = 0; i < 30; i++)
 	{
 		for( int j = 0; j < 6; j++)
 		{
-			population[i][j] = double_rand_range(5000, -5000); /*random number b/w -5000 and 5000*/
+			population[i][j] = randombytes_uniform(10000) - 5000; /*random number b/w -5000 and 5000*/
 		}
 	}
 	
@@ -73,7 +82,7 @@ int main(void)
 				parent_1[i] = populationfitness[l];
 			}	
 
-			int m = int_rand_range(29, 0);
+			int m = randombytes_uniform(30);
 			printf("m:%d\n", m);
 			int n = int_rand_range(29, 0);
 			printf("n:%d\n", n);
@@ -113,27 +122,17 @@ int main(void)
 			}
 		}
 		
-
-		for (int i=0;i<30;i++)
-		{
-			for (int j=0;j<6;j++)
-			{
-				printf("%lf\n", new_population[i][j]);
-			}
-		}
 		return 0;
 	}
 }
 
 double double_rand_range(double a, double b)
 {
-	srand(time(NULL));
 	return (((((double)rand()) / ((double)(RAND_MAX))) * (a - b)) + b); /*generates random double between a(upper) and b(lower)*/
 }
 
-double int_rand_range(double a, double b)
+int int_rand_range(int a, int b)
 {
-	srand(time(NULL));
 	return ((((int)(rand()) / (int)(RAND_MAX)) * (a - b)) + b); /*generates random int between a(upper) and b(lower)*/
 }
 
