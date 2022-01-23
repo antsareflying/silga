@@ -9,7 +9,7 @@ whiel populationfitness is not 0:
 		no  go next done 
 	selection done
 	make new gen
-		crossover
+		crossover done
 		mutate
 
 f(x) = (a+30b^2c-2d^3e^2+2f) - 2567 
