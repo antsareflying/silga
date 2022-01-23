@@ -75,11 +75,11 @@ int main(void)
 			int l = randombytes_uniform(30);
 			if(populationfitness[k] < populationfitness[l])
 			{
-				parent_1[i] = populationfitness[k];
+				parent_1[i] = k;
 			}
 			else
 			{
-				parent_1[i] = populationfitness[l];
+				parent_1[i] = l;
 			}	
 
 			int m = randombytes_uniform(30);
@@ -88,11 +88,11 @@ int main(void)
 			printf("n:%d\n", n);
 			if(populationfitness[m] < populationfitness[n])
 			{
-				parent_2[i] = populationfitness[m];
+				parent_2[i] = m;
 			}
 			else
 			{
-				parent_2[i] = populationfitness[n];
+				parent_2[i] = n;
 			}	
 		}
 
