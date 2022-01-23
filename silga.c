@@ -3,7 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <stdbool.h>
-#include "sodium.h"
+#include "include/sodium.h"
 
 double double_rand_range(double a, double b);
 int int_rand_range(int a, int b);
@@ -28,8 +28,8 @@ int main(void)
 	int generation = 0;
 	double population[30][6] = {0};
 	double populationfitness[30] = {1};
-	int parent_1[30] = {31};
-	int parent_2[30] = {31};
+	int parent_1[30] = {100};
+	int parent_2[30] = {100};
 
 	srand(time(NULL));
 
@@ -71,8 +71,8 @@ int main(void)
 		
 		for(int i = 0; i < 30; i++)
 		{
-			int k = int_rand_range(29,0);
-			int l = int_rand_range(29,0);
+			int k = randombytes_uniform(30);
+			int l = randombytes_uniform(30);
 			if(populationfitness[k] < populationfitness[l])
 			{
 				parent_1[i] = populationfitness[k];
@@ -84,7 +84,7 @@ int main(void)
 
 			int m = randombytes_uniform(30);
 			printf("m:%d\n", m);
-			int n = int_rand_range(29, 0);
+			int n = randombytes_uniform(30);
 			printf("n:%d\n", n);
 			if(populationfitness[m] < populationfitness[n])
 			{
@@ -100,7 +100,7 @@ int main(void)
 		{
 			printf("%d\n", parent_1[i]);
 		}
-			printf("parent 1 done");
+			printf("parent 1 done\n");
 		for(int i =0 ; i< 30;i++)
 		{
 			printf("%d\n", parent_2[i]);
