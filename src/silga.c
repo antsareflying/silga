@@ -36,8 +36,8 @@ int main(void)
 	
 	for(int i = 0; i < 30; i++)
 	{
-		populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * population[i][1] * population[i][2]/*30bc*/ - (2 * population[i][3]) * population[i][4] /*2de*/ + 2 * population[i][5]/*2f*/ - 30);
-		/* calculate fitness function (a+30bc-2de+2f) - 30*/
+		populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
+		/* calculate fitness function (a+30b^2c-2d^3e^2+2f) - 2567*/
 	}
 
 	bool soln_found = false;
@@ -51,8 +51,8 @@ int main(void)
 		//calc fitness function
 		for(int i = 0; i < 30; i++)
 		{
-			populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * population[i][1] * population[i][2]/*30bc*/ - (2 * population[i][3]) * population[i][4] /*2de*/ + 2 * population[i][5]/*2f*/ - 30);
-			/* calculate fitness function (a+30bc-2de+2f) - 30*/
+			populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
+			/* calculate fitness function (a+30b^2c-2d^3e^2+2f) - 2567*/
 			
 			printf("Fitness gen %d row %d: %lf\n", generation, i, populationfitness[i]);
 			if(fabs(populationfitness[i]) < fabs(best_fitness))

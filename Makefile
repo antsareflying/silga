@@ -14,8 +14,10 @@ $(BIN)/silga.exe: $(OBJ)/silga.o
 $(OBJ)/silga.o: $(SRC)/silga.c 
 	$(CC) -c $(SRC)/silga.c  $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o $(OBJ)/silga.o
 
+# rm -Recurse -Force c:/users/seong/programming/silga/bin/silga.exe
+# rm -Recurse -Force c:/users/seong/programming/silga/obj/silga.o
 clean: 
-	rm -Recurse -Force bin/silga.exe
-	rm -Recurse -Force obj/silga.o
+	
+	@echo %PATH%
 
 
