@@ -1,14 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h> /*srand, rand*/
+#include <stdlib.h>
 #include <time.h>
 #include <math.h>
 #include <stdbool.h>
 #include <math.h>
-#include "include/sodium.h"
+#include "sodium.h"
 
 int cmpfunc (const void * a, const void * b);
 bool check_fitness_zero(double populationfitness[30]);
-
 
 int generation = 0;
 int population[30][6] = {0};
