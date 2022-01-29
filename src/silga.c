@@ -42,7 +42,6 @@ int main(void)
 
 	bool soln_found = false;
 	double best_fitness = 10000000000;
-	int best_fitness_index = 31;
 	int best_fitness_index_counter = 0;
 	int best_fitness_soln[6] = {0};
 
@@ -58,7 +57,6 @@ int main(void)
 			if(fabs(populationfitness[i]) < fabs(best_fitness))
 			{
 				best_fitness = populationfitness[i];
-				best_fitness_index = i;
 				for(int j = 0; j< 6; j++)
 				{
 					best_fitness_soln[j] = population[i][j];
@@ -67,7 +65,6 @@ int main(void)
 			else if(populationfitness[i] == best_fitness)
 			{
 				best_fitness_index_counter++;
-				best_fitness_index = i;
 			}
 		}
 
@@ -139,11 +136,8 @@ int main(void)
 
 		
 	}
-
-	printf("%d\n", best_fitness_index);
-	printf("%lf\n", populationfitness[best_fitness_index]);
 	printf("generation: %d\n", generation-1);
-		
+	printf("solution: a, b, c, d, e, f\n");
 	for(int i = 0; i< 6; i++)
 	{
 		printf("%d  ", best_fitness_soln[i]);
