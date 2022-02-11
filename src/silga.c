@@ -7,10 +7,10 @@
 #include "sodium.h"
 
 int cmpfunc (const void * a, const void * b);
-bool check_fitness_zero(double populationfitness[30]);
+bool check_fitness_zero(double population_fitness[30]);
 
 
-double populationfitness[30] = {1000000};
+double population_fitness[30] = {1000000};
 
 
 int main(void)
@@ -21,8 +21,8 @@ int main(void)
 	int population[population_size][6] = {0};
 	int *population_ptr = &population;
 	int new_population[population_size][6] = {0};
-	int parent_1[population_size] = {100};
-	int parent_2[population_size] = {100};
+	int parent_1[population_size] = {population_size + 1};
+	int parent_2[population_size] = {population_size + 1};
 
 	if(sodium_init() == -1)
 	{
@@ -41,7 +41,7 @@ int main(void)
 	
 	for(int i = 0; i < population_size; i++)
 	{
-		populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
+		population_fitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
 		/* calculate fitness function (a+30b^2c-2d^3e^2+2f) - 2567*/
 	}
 
@@ -55,19 +55,19 @@ int main(void)
 		//calc fitness function
 		for(int i = 0; i < population_size; i++)
 		{
-			populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
+			population_fitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
 			/* calculate fitness function (a+30b^2c-2d^3e^2+2f) - 2567*/
 			
-			printf("Fitness gen %d row %d: %lf\n", generation, i, populationfitness[i]);
-			if(fabs(populationfitness[i]) < fabs(best_fitness))
+			printf("Fitness gen %d row %d: %lf\n", generation, i, population_fitness[i]);
+			if(fabs(population_fitness[i]) < fabs(best_fitness))
 			{
-				best_fitness = populationfitness[i];
+				best_fitness = population_fitness[i];
 				for(int j = 0; j< 6; j++)
 				{
 					best_fitness_soln[j] = population[i][j];
 				}
 			}
-			else if(populationfitness[i] == best_fitness)
+			else if(population_fitness[i] == best_fitness)
 			{
 				best_fitness_index_counter++;
 			}
@@ -84,7 +84,7 @@ int main(void)
 		{
 			int k = randombytes_uniform(population_size);
 			int l = randombytes_uniform(population_size);
-			if(fabs(populationfitness[k]) < fabs(populationfitness[l]))
+			if(fabs(population_fitness[k]) < fabs(population_fitness[l]))
 			{
 				parent_1[i] = k;
 			}
@@ -95,7 +95,7 @@ int main(void)
 
 			int m = randombytes_uniform(population_size);
 			int n = randombytes_uniform(population_size);
-			if(fabs(populationfitness[m]) < fabs(populationfitness[n]))
+			if(fabs(population_fitness[m]) < fabs(population_fitness[n]))
 			{
 				parent_2[i] = m;
 			}
@@ -150,17 +150,15 @@ int main(void)
 }
 
 
-bool check_fitness_zero(double populationfitness[30]) // TODO: change to use pointer and add population size arg
+bool check_fitness_zero(double population_fitness[30]) // TODO: change to use pointer and add population size arg
 {
 	for(int i = 0; i < 30; i++)
 	{
-		if(populationfitness[i] == 0)
+		if(population_fitness[i] == 0)
 		{
 			return true;
 		}
-		
 	}
-
 	return false;
 }
 
