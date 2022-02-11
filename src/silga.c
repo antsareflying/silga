@@ -15,11 +15,14 @@ double populationfitness[30] = {1000000};
 
 int main(void)
 {
+	const int population_size = 30; // TODO: replace with command line arg
+
 	int generation = 0;
-	int population[30][6] = {0};
-	int new_population[30][6] = {0};
-	int parent_1[30] = {100};
-	int parent_2[30] = {100};
+	int population[population_size][6] = {0};
+	int *population_ptr = &population;
+	int new_population[population_size][6] = {0};
+	int parent_1[population_size] = {100};
+	int parent_2[population_size] = {100};
 
 	if(sodium_init() == -1)
 	{
@@ -27,7 +30,7 @@ int main(void)
 	}
 
 
-	for(int i = 0; i < 30; i++)
+	for(int i = 0; i < population_size; i++)
 	{
 		for( int j = 0; j < 6; j++)
 		{
@@ -36,7 +39,7 @@ int main(void)
 	}
 
 	
-	for(int i = 0; i < 30; i++)
+	for(int i = 0; i < population_size; i++)
 	{
 		populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
 		/* calculate fitness function (a+30b^2c-2d^3e^2+2f) - 2567*/
@@ -50,7 +53,7 @@ int main(void)
 	while (soln_found == false)
 	{
 		//calc fitness function
-		for(int i = 0; i < 30; i++)
+		for(int i = 0; i < population_size; i++)
 		{
 			populationfitness[i] = (double)(population[i][0]/*a*/ + 30 * pow(population[i][1], 2) * population[i][2]/*30b^2c*/ - 2 * pow(population[i][3],3) * pow(population[i][4],2) /*2de*/ + 2 * population[i][5]/*2f*/ - 2567);
 			/* calculate fitness function (a+30b^2c-2d^3e^2+2f) - 2567*/
@@ -77,10 +80,10 @@ int main(void)
 		}
 
 		//tournament selection
-		for(int i = 0; i < 30; i++)
+		for(int i = 0; i < population_size; i++)
 		{
-			int k = randombytes_uniform(30);
-			int l = randombytes_uniform(30);
+			int k = randombytes_uniform(population_size);
+			int l = randombytes_uniform(population_size);
 			if(fabs(populationfitness[k]) < fabs(populationfitness[l]))
 			{
 				parent_1[i] = k;
@@ -90,8 +93,8 @@ int main(void)
 				parent_1[i] = l;
 			}	
 
-			int m = randombytes_uniform(30);
-			int n = randombytes_uniform(30);
+			int m = randombytes_uniform(population_size);
+			int n = randombytes_uniform(population_size);
 			if(fabs(populationfitness[m]) < fabs(populationfitness[n]))
 			{
 				parent_2[i] = m;
@@ -103,7 +106,7 @@ int main(void)
 		}
 		
 		//crossover
-		for(int i = 0; i < 30; i+=2)
+		for(int i = 0; i < population_size; i+=2)
 		{
 			for(int j = 0; j < 3; j++)
 			{
@@ -119,14 +122,14 @@ int main(void)
 		}
 		
 		// mutation
-		for(int i = 0; i < 30; i++)
+		for(int i = 0; i < population_size; i++)
 		{
 			int random_gene = randombytes_uniform(6);
 			int random_mutation = (randombytes_uniform(10) - 5); /*random mutation between -5 and 5*/
 			new_population[i][random_gene] += random_mutation;
 		}
 
-		for(int i = 0; i < 30; i++)
+		for(int i = 0; i < population_size; i++)
 		{
 			for(int j = 0; j < 6; j++)
 			{
@@ -147,7 +150,7 @@ int main(void)
 }
 
 
-bool check_fitness_zero(double populationfitness[30])
+bool check_fitness_zero(double populationfitness[30]) // TODO: change to use pointer and add population size arg
 {
 	for(int i = 0; i < 30; i++)
 	{
