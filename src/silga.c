@@ -9,15 +9,17 @@
 int cmpfunc (const void * a, const void * b);
 bool check_fitness_zero(double populationfitness[30]);
 
-int generation = 0;
-int population[30][6] = {0};
-int new_population[30][6] = {0};
+
 double populationfitness[30] = {1000000};
-int parent_1[30] = {100};
-int parent_2[30] = {100};
+
 
 int main(void)
 {
+	int generation = 0;
+	int population[30][6] = {0};
+	int new_population[30][6] = {0};
+	int parent_1[30] = {100};
+	int parent_2[30] = {100};
 
 	if(sodium_init() == -1)
 	{
