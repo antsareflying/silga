@@ -144,12 +144,6 @@ int main(void)
 	}
 }
 
-int cmpfunc(const void * a, const void * b) //compare function for qsort
-{
-	if (fabs(*(double*)a) > fabs(*(double*)b)) return 1;
-	else if (fabs(*(double*)a) < fabs(*(double*)b)) return -1;
-	else return 0;
-}
 
 bool check_fitness_zero(double populationfitness[30])
 {
