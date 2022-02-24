@@ -6,6 +6,9 @@
 #include <math.h>
 #include "sodium.h"
 
+
+#define population_size 30// TODO: replace with command line arg
+
 int cmpfunc (const void * a, const void * b);
 bool check_fitness_zero(double population_fitness[30]);
 
@@ -15,11 +18,8 @@ double population_fitness[30] = {1000000}; // TODO: use pointers to remove globa
 
 int main(void)
 {
-	const int population_size = 30; // TODO: replace with command line arg
-
 	int generation = 0;
 	int population[population_size][6] = {0};
-	int *population_ptr = &population;
 	int new_population[population_size][6] = {0};
 	int parent_1[population_size] = {population_size + 1};
 	int parent_2[population_size] = {population_size + 1};
@@ -162,3 +162,22 @@ bool check_fitness_zero(double population_fitness[30]) // TODO: change to use po
 	return false;
 }
 
+bool fitness_function(void)
+{
+	return false;
+}
+
+int tournament_selection(void)
+{
+	return 0;
+}
+
+int crossover(void)
+{
+	return 0;
+}
+
+int mutate(void)
+{
+	return 0;
+}

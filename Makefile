@@ -1,7 +1,7 @@
 CC = gcc
 LDFLAGS = -I$(CURDIR)/include -L$(CURDIR)/lib
 LDLIBS = -lsodium
-CFLAGS = -g -Wall -Wextra -std=c11
+CFLAGS = -g -Wall -Wextra -std=c17
 BIN = ./bin
 SRC = ./src
 OBJ = ./obj
