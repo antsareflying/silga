@@ -14,7 +14,7 @@ int cmpfunc (const void * a, const void * b);
 bool check_fitness_zero(double population_fitness[30]);
 
 
-double population_fitness[30] = {1000000}; // TODO: use pointers to remove global variable?
+double population_fitness[30] = {DBL_MAX}; // TODO: use pointers to remove global variable?
 
 
 int main(void)
