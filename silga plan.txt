@@ -2,14 +2,14 @@ GA flow
 
 initialise done
 
-whiel populationfitness is not 0:
-	go through fitness function done
-	found soln? done
-		yes exit done
-		no  go next done 
-	selection done
+while populationfitness is not 0:
+	go through fitness function
+	found soln?
+		yes exit
+		no  go continue 
+	tournament selection 
 	make new gen
-		crossover done
+		crossover
 		mutate
 
 f(x) = (a+30b^2c-2d^3e^2+2f) - 2567 
