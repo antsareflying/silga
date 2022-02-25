@@ -16,6 +16,13 @@ $(OBJ)/silga.o: $(SRC)/silga.c
 
 # rm -Recurse -Force c:/users/seong/programming/silga/bin/silga.exe
 # rm -Recurse -Force c:/users/seong/programming/silga/obj/silga.o
+
+naive: $(BIN)/naive.exe
+$(BIN)/naive.exe: $(OBJ)/naive.o
+	$(CC) $(OBJ)/naive.o $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o $(BIN)/naive.exe
+
+$(OBJ)/naive.o: $(SRC)/naive.c 
+	$(CC) -c $(SRC)/naive.c  $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o $(OBJ)/naive.o
 clean: 
 	
 	@echo %PATH%
